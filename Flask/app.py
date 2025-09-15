@@ -1,6 +1,8 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template, request, redirect, url_for
 import sqlite3
+import requests
 
+API_URL = 'https://5000-davidnho-fastapidemo-52uaue5vuhf.ws-us121.gitpod.io/'
 app = Flask(__name__)
 DB_NAME = "database.db"
 
@@ -16,7 +18,7 @@ def query_db(query, args=(), one=False):
 @app.route("/")
 def home():
     return {"message": "Welcome to the Flask SQLite API"}
-
+    
 @app.route("/users")
 def get_users():
     rows = query_db("SELECT * FROM users")
